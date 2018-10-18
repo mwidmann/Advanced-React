@@ -1,16 +1,39 @@
 <template>
-  <div>
+  <StyledPage>
     <Header/>
-    <nuxt/>
-  </div>
+    <inner>
+      <nuxt/>
+    </inner>
+  </StyledPage>
 </template>
 
 <script>
+import Vue from 'vue'
 import Header from '~/components/Header'
+import styled, { injectGlobal } from 'vue-styled-components'
+
+const StyledPage = styled.div`
+  background: white;
+  color: black;
+`
+  // background: ${this.theme.red};
+
+console.log(Vue.prototype, this)
+
+const Inner = styled.div`
+  max-width: ${Vue.prototype.$theme.maxWidth};
+  margin: 0 auto;
+  padding: 2rem;
+`
 
 export default {
   components: {
-    Header
+    Header,
+    StyledPage,
+    Inner,
+  },
+  mounted() {
+    console.log(this.$theme);
   }
 }
 </script>
