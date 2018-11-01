@@ -27,7 +27,6 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/css/tailwind.css',
     '~/static/nprogress.css'
   ],
 
