@@ -1,7 +1,5 @@
-import Vue from 'vue'
-
-Vue.prototype.$theme = {
-  red: '#FF0000',
+export default {
+  red: '#4fc08d',
   black: '#393939',
   grey: '#3A3A3A',
   lightgrey: '#E1E1E1',

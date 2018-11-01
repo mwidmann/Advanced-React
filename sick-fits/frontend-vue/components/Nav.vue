@@ -1,10 +1,18 @@
 <template>
-  <div>
-    <nuxt-link to="/">
-      <a>Home</a>
-    </nuxt-link>
-    <nuxt-link to="/sell">
-      <a>Sell</a>
-    </nuxt-link>
-  </div>
+  <nav-styles>
+    <nuxt-link to="/items">Shop</nuxt-link>
+    <nuxt-link to="/sell">sell</nuxt-link>
+    <nuxt-link to="/signup">signup</nuxt-link>
+    <nuxt-link to="/orders">orders</nuxt-link>
+    <nuxt-link to="/me">me</nuxt-link>
+  </nav-styles>
 </template>
+
+<script>
+import NavStyles from './styles/NavStyles'
+export default {
+  components: {
+    NavStyles
+  }
+}
+</script>
