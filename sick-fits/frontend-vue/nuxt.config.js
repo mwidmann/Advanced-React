@@ -1,4 +1,5 @@
 const pkg = require('./package')
+import serveStatic from 'serve-static'
 
 module.exports = {
   mode: 'spa',
@@ -52,6 +53,15 @@ module.exports = {
     */
     extend(config, ctx) {
 
+    },
+  },
+  serverMiddleware: [
+    {
+      path: '/fonts', handler: serveStatic(__dirname + '/fonts', {
+        setHeaders: (res, path) => {
+          res.setHeader('Content-Type', serveStatic.mime.lookup(path))
+        }
+      })
     }
-  }
+  ]
 }
