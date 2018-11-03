@@ -1,5 +1,6 @@
 const pkg = require('./package')
 import serveStatic from 'serve-static'
+import { endpoint } from './config';
 
 module.exports = {
   mode: 'spa',
@@ -42,6 +43,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/apollo'
   ],
 
   /*
@@ -53,6 +55,16 @@ module.exports = {
     */
     extend(config, ctx) {
 
+    },
+  },
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: endpoint,
+        httpLinkOptions: {
+          credentials: 'include'
+        },
+      },
     },
   },
   serverMiddleware: [
