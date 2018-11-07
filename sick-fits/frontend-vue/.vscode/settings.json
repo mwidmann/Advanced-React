@@ -4,5 +4,6 @@
     "titleBar.inactiveForeground": "#35495ecc",
     "titleBar.activeBackground": "#4fc08d",
     "titleBar.inactiveBackground": "#4fc08dcc"
-  }
+  },
+  "eslint.enable": false
 }
