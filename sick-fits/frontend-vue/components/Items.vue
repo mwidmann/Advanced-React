@@ -10,7 +10,6 @@
         <div v-else class="no-result apollo">No result :(</div>
       </template>
     </apollo-query>
-
   </Center>
 </template>
 
@@ -21,7 +20,7 @@ import styled from 'vue-styled-components'
 import theme from '~/assets/theme'
 import Item from '~/components/Item'
 
-const ALL_ITEMS_QUERY = gql`
+export const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
     items {
       id
