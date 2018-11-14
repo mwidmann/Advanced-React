@@ -1,6 +1,6 @@
 <template>
   <item-styles>
-    <img v-if="item.src" :src="item.src" :alt="item.title" />
+    <img v-if="item.image" :src="item.image" :alt="item.title" />
     <Title>
       <nuxt-link :to="`/item/${item.id}`">{{item.title}}</nuxt-link>
     </Title>
