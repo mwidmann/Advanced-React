@@ -1,5 +1,6 @@
 <template>
   <Center>
+    <pagination :page="page"></pagination>
     <apollo-query :query="ALL_ITEMS_QUERY">
       <template slot-scope="{result: {loading, error, data}}">
         <p v-if="loading">Loading...</p>
@@ -10,6 +11,7 @@
         <div v-else class="no-result apollo">No result :(</div>
       </template>
     </apollo-query>
+    <pagination :page="page"></pagination>
   </Center>
 </template>
 
@@ -20,6 +22,7 @@ import styled from 'vue-styled-components'
 import theme from '~/assets/theme'
 import Item from '~/components/Item'
 import Error from '~/components/ErrorMessage'
+import Pagination from '~/components/Pagination'
 
 export const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
@@ -52,7 +55,14 @@ export default {
     ItemsList,
     Item,
     ApolloQuery,
-    Error
+    Error,
+    Pagination
+  },
+  props: {
+    page: {
+      type: Number,
+      required: true
+    },
   },
   computed: {
     ALL_ITEMS_QUERY() {
