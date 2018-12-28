@@ -3,7 +3,7 @@
     <ErrorStyles v-for="(e, i) in errors" :key="i">
        <p data-test="graphql-error">
           <strong>Shoot!</strong>
-          {e.message.replace('GraphQL error: ', '')}
+          {{e.message.replace('GraphQL error: ', '')}}
         </p>
     </ErrorStyles>
   </div>
@@ -28,7 +28,7 @@ const ErrorStyles = styled.div`
 export default {
   props: {
     error: {
-      type: Object,
+      type: [Object,Error],
       default: undefined
     }
   },
@@ -36,12 +36,12 @@ export default {
     errors() {
       if (
         this.error.networkError &&
-        error.networkError.result &&
-        error.networkError.result.errors.length
+        this.error.networkError.result &&
+        this.error.networkError.result.errors.length
       ) {
-        return error.networkError.result.errors
+        return this.error.networkError.result.errors
       }
-      return [error]
+      return [this.error]
     }
   }
 }
