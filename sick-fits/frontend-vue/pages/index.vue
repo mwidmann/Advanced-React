@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Items/>
+    <Items :page="parseFloat(1)"/>
   </div>
 </template>
 
