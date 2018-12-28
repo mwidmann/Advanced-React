@@ -26,6 +26,9 @@ const ErrorStyles = styled.div`
 `
 
 export default {
+  components: {
+    ErrorStyles
+  },
   props: {
     error: {
       type: [Object,Error],
