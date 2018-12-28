@@ -1,7 +1,7 @@
 <template>
   <Center>
     <pagination :page="page"></pagination>
-    <apollo-query :query="ALL_ITEMS_QUERY">
+    <apollo-query :query="ALL_ITEMS_QUERY" :variables="{ skip: startAt }" fetchPolicy="cache-and-network">
       <template slot-scope="{result: {loading, error, data}}">
         <p v-if="loading">Loading...</p>
         <error v-else-if="error" :error="error"></error>
@@ -23,10 +23,11 @@ import theme from '~/assets/theme'
 import Item from '~/components/Item'
 import Error from '~/components/ErrorMessage'
 import Pagination from '~/components/Pagination'
+import { perPage } from '../config'
 
 export const ALL_ITEMS_QUERY = gql`
-  query ALL_ITEMS_QUERY {
-    items {
+  query ALL_ITEMS_QUERY($skip: Int = 0, $first: Int = ${perPage} ) {
+    items(first: $first, skip: $skip, orderBy: createdAt_DESC) {
       id
       title
       price
@@ -67,6 +68,9 @@ export default {
   computed: {
     ALL_ITEMS_QUERY() {
       return ALL_ITEMS_QUERY
+    },
+    startAt() {
+      return this.page * perPage - perPage
     }
   }
 }
