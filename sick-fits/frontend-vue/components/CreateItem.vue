@@ -72,11 +72,11 @@ export default {
   },
   data() {
     return {
-      title: 'some title',
-      description: 'desc',
+      title: '',
+      description: '',
       image: '',
       largeImage: '',
-      price: 1000
+      price: 0
     }
   },
   methods: {
