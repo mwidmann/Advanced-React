@@ -9,7 +9,7 @@
       <div class="buttonList">
         <nuxt-link :to="`/update/${item.id}`">Edit ✏</nuxt-link>
         <button>Add To Cart</button>
-        <button>Delete</button>
+        <delete-item :id="item.id">Delete</delete-item>
       </div>
   </item-styles>
 </template>
@@ -19,12 +19,14 @@ import Title from './styles/Title'
 import ItemStyles from './styles/ItemStyles'
 import PriceTag from './styles/PriceTag'
 import formatMoney from '~/lib/formatMoney'
+import DeleteItem from './DeleteItem'
 
 export default {
   components: {
     Title,
     ItemStyles,
-    PriceTag
+    PriceTag,
+    DeleteItem,
   },
   props: {
     item: {
