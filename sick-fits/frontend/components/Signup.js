@@ -32,6 +32,7 @@ class Signup extends Component {
   };
 
   render() {
+    const { email, name, password } = this.state;
     return (
       <Mutation mutation={SIGNUP_MUTATION} variables={this.state}>
         {(signup, { error, loading }) => (
@@ -52,7 +53,7 @@ class Signup extends Component {
                   type="email"
                   placeholder="email"
                   name="email"
-                  value={this.state.email}
+                  value={email}
                   onChange={this.saveToState}
                 />
               </label>
@@ -62,7 +63,7 @@ class Signup extends Component {
                   type="text"
                   placeholder="name"
                   name="name"
-                  value={this.state.name}
+                  value={name}
                   onChange={this.saveToState}
                 />
               </label>
@@ -72,7 +73,7 @@ class Signup extends Component {
                   type="password"
                   placeholder="password"
                   name="password"
-                  value={this.state.password}
+                  value={password}
                   onChange={this.saveToState}
                 />
               </label>

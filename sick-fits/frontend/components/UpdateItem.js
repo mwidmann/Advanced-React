@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Mutation, Query } from "react-apollo";
-import gql from "graphql-tag";
-import Form from "./styles/Form";
-import formatMoney from "../lib/formatMoney";
-import Error from './ErrorMessage'
-import Router from 'next/router'
+import React, { Component } from 'react';
+import { Mutation, Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import Router from 'next/router';
+import Form from './styles/Form';
+import formatMoney from '../lib/formatMoney';
+import Error from './ErrorMessage';
 
 const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY($id: ID!) {
@@ -15,7 +15,7 @@ const SINGLE_ITEM_QUERY = gql`
       price
     }
   }
-`
+`;
 
 const UPDATE_ITEM_MUTATION = gql`
   mutation UPDATE_ITEM_MUTATION(
@@ -39,71 +39,97 @@ const UPDATE_ITEM_MUTATION = gql`
 `;
 
 class UpdateItem extends Component {
-  state = {
-  };
-  handleChange = (e) => {
-    const { name, type, value } = e.target
-    const val = type=== 'number' ?parseFloat(value) : value
+  state = {};
+
+  handleChange = e => {
+    const { name, type, value } = e.target;
+    const val = type === 'number' ? parseFloat(value) : value;
     this.setState({
-      [name]: val
-    })
+      [name]: val,
+    });
   };
 
   updateItem = async (e, updateItemMutation) => {
-    e.preventDefault()
+    e.preventDefault();
+    const { id } = this.props;
     const res = await updateItemMutation({
       variables: {
-        id: this.props.id,
+        id,
         ...this.state,
-      }
-    })
-    console.log(res)
-  }
+      },
+    });
+    console.log(res);
+  };
 
   render() {
+    const { id } = this.props;
     return (
-      <Query query={SINGLE_ITEM_QUERY} variables={{
-        id: this.props.id
-      }}>
-        {({data, loading}) => {
-          if (loading) return <p>Loading...</p>
+      <Query
+        query={SINGLE_ITEM_QUERY}
+        variables={{
+          id,
+        }}
+      >
+        {({ data, loading }) => {
+          if (loading) return <p>Loading...</p>;
 
-          const item = data.item
-          if (!item) return <p>No item found for id {this.props.id}</p>
+          const { item } = data;
+          if (!item) return <p>No item found for id {id}</p>;
           return (
             <Mutation mutation={UPDATE_ITEM_MUTATION} variables={this.state}>
-            {(updateItem, { loading, error }) => (
-              <Form
-                onSubmit={e => this.updateItem(e, updateItem)}
-              >
-                <Error error={error} />
-                <fieldset disabled={loading} aria-busy={loading}>
+              {(updateItem, { loading, error }) => (
+                <Form onSubmit={e => this.updateItem(e, updateItem)}>
+                  <Error error={error} />
+                  <fieldset disabled={loading} aria-busy={loading}>
+                    <label htmlFor="title">
+                      Title
+                      <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Title"
+                        required
+                        defaultValue={item.title}
+                        onChange={this.handleChange}
+                      />
+                    </label>
 
-                  <label htmlFor="title">
-                    Title
-                    <input type="text" id="title" name="title" placeholder="Title" required defaultValue={item.title} onChange={this.handleChange} />
-                  </label>
+                    <label htmlFor="price">
+                      Price
+                      <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        placeholder="Price"
+                        required
+                        defaultValue={item.price}
+                        onChange={this.handleChange}
+                      />
+                    </label>
 
-                  <label htmlFor="price">
-                    Price
-                    <input type="number" id="price" name="price" placeholder="Price" required defaultValue={item.price} onChange={this.handleChange} />
-                  </label>
+                    <label htmlFor="description">
+                      Description
+                      <textarea
+                        type="number"
+                        id="description"
+                        name="description"
+                        placeholder="Enter a description"
+                        required
+                        defaultValue={item.description}
+                        onChange={this.handleChange}
+                      />
+                    </label>
 
-                  <label htmlFor="description">
-                    Description
-                    <textarea type="number" id="description" name="description" placeholder="Enter a description" required defaultValue={item.description} onChange={this.handleChange} />
-                  </label>
-
-                  <button type="submit">Save Changes</button>
-                </fieldset>
-              </Form>
-            )}
+                    <button type="submit">Save Changes</button>
+                  </fieldset>
+                </Form>
+              )}
             </Mutation>
-          )
+          );
         }}
       </Query>
-    )
+    );
   }
 }
 export default UpdateItem;
-export { UPDATE_ITEM_MUTATION }
+export { UPDATE_ITEM_MUTATION };
