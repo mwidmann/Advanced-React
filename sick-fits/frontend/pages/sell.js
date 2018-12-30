@@ -1,8 +1,8 @@
-import CreateItem from '../components/CreateItem'
+import CreateItem from '../components/CreateItem';
 
-const Sell = props => (
+const Sell = () => (
   <div>
-    <CreateItem></CreateItem>
+    <CreateItem />
   </div>
-)
-export default Sell
+);
+export default Sell;
