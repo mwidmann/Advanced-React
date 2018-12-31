@@ -17,4 +17,5 @@ type Query {
   items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, first: Int, last: Int): [Item]!
   item(where: UserWhereUniqueInput!): Item
   itemsConnection(where: ItemWhereInput): ItemConnection!
+  me: User
 }
