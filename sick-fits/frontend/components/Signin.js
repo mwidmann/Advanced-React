@@ -5,13 +5,9 @@ import Form from './styles/Form';
 import Error from './ErrorMessage';
 import { CURRENT_USER_QUERY } from './User';
 
-const SIGNUP_MUTATION = gql`
-  mutation SIGNUP_MUTATION(
-    $email: String!
-    $password: String!
-    $name: String!
-  ) {
-    signup(email: $email, password: $password, name: $name) {
+const SIGNIN_MUTATION = gql`
+  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
+    signin(email: $email, password: $password) {
       id
       email
       name
@@ -19,9 +15,8 @@ const SIGNUP_MUTATION = gql`
   }
 `;
 
-class Signup extends Component {
+class Signin extends Component {
   state = {
-    name: '',
     password: '',
     email: '',
   };
@@ -33,24 +28,24 @@ class Signup extends Component {
   };
 
   render() {
-    const { email, name, password } = this.state;
+    const { email, password } = this.state;
     return (
       <Mutation
-        mutation={SIGNUP_MUTATION}
+        mutation={SIGNIN_MUTATION}
         variables={this.state}
         refetchQueries={[{ query: CURRENT_USER_QUERY }]}
       >
-        {(signup, { error, loading }) => (
+        {(signin, { error, loading }) => (
           <Form
             method="post"
             onSubmit={async e => {
               e.preventDefault();
-              await signup();
-              this.setState({ name: '', email: '', password: '' });
+              await signin();
+              this.setState({ email: '', password: '' });
             }}
           >
             <fieldset disabled={loading} aria-busy={loading}>
-              <h2>Sign up for an Account.</h2>
+              <h2>Sign into your account.</h2>
               <Error error={error} />
               <label htmlFor="email">
                 Email
@@ -59,16 +54,6 @@ class Signup extends Component {
                   placeholder="email"
                   name="email"
                   value={email}
-                  onChange={this.saveToState}
-                />
-              </label>
-              <label htmlFor="name">
-                Name
-                <input
-                  type="text"
-                  placeholder="name"
-                  name="name"
-                  value={name}
                   onChange={this.saveToState}
                 />
               </label>
@@ -82,7 +67,7 @@ class Signup extends Component {
                   onChange={this.saveToState}
                 />
               </label>
-              <button type="submit">Sign Up!</button>
+              <button type="submit">Sign In!</button>
             </fieldset>
           </Form>
         )}
@@ -91,4 +76,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default Signin;

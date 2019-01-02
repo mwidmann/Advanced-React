@@ -1,22 +1,18 @@
 <template>
   <apollo-mutation
-    :mutation="SIGNUP_MUTATION"
+    :mutation="SIGNIN_MUTATION"
     :refetchQueries="refetchQueries"
-    :variables="{ name, email, password }"
+    :variables="{ email, password }"
     @done="onDone"
   >
     <template slot-scope="{ mutate, loading, error }">
       <Form method="post" @submit.native.prevent="mutate">
         <fieldset :disabled="loading" :aria-busy="loading">
-          <h2>Sign up for an Account.</h2>
+          <h2>Sign into your account</h2>
           <Error :error="error"/>
           <label for="email">
             Email
             <input type="email" placeholder="email" name="email" v-model="email">
-          </label>
-          <label for="name">
-            Name
-            <input type="text" placeholder="name" name="name" v-model="name">
           </label>
           <label for="password">
             Password
@@ -27,7 +23,7 @@
               v-model="password"
             >
           </label>
-          <button type="submit">Sign Up!</button>
+          <button type="submit">Sign In!</button>
         </fieldset>
       </Form>
     </template>
@@ -41,13 +37,12 @@ import Form from './styles/Form'
 import Error from './ErrorMessage'
 import { CURRENT_USER_QUERY } from './User'
 
-const SIGNUP_MUTATION = gql`
-  mutation SIGNUP_MUTATION(
+const SIGNIN_MUTATION = gql`
+  mutation SIGNIN_MUTATION(
     $email: String!
     $password: String!
-    $name: String!
   ) {
-    signup(email: $email, password: $password, name: $name) {
+    signin(email: $email, password: $password) {
       id
       email
       name
@@ -63,7 +58,6 @@ export default {
   },
   data() {
     return {
-      name: '',
       email: '',
       password: ''
     }
@@ -76,8 +70,8 @@ export default {
     }
   },
   computed: {
-    SIGNUP_MUTATION() {
-      return SIGNUP_MUTATION
+    SIGNIN_MUTATION() {
+      return SIGNIN_MUTATION
     }
   }
 }
