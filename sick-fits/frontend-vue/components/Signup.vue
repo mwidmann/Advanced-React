@@ -3,7 +3,6 @@
     :mutation="SIGNUP_MUTATION"
     :refetchQueries="refetchQueries"
     :variables="{ name, email, password }"
-    @done="onDone"
   >
     <template slot-scope="{ mutate, loading, error }">
       <Form method="post" @submit.native.prevent="mutate">
@@ -69,8 +68,6 @@ export default {
     }
   },
   methods: {
-    onDone(result) {
-    },
     refetchQueries() {
       return [{query: CURRENT_USER_QUERY}]
     }
