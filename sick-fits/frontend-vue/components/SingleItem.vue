@@ -1,17 +1,28 @@
 <template>
-  <apollo-query :query="SINGLE_ITEM_QUERY" :variables="{id}">
+  <ApolloQuery
+    :query="SINGLE_ITEM_QUERY"
+    :variables="{id}"
+  >
     <template slot-scope="{result: {loading, error, data}}">
-      <p v-if="loading">Loading...</p>
-      <error v-else-if="error" :error="error"></error>
-      <single-item-styles v-else-if="data">
-        <img :src="data.item.largeImage" :alt="data.item.title" />
+      <p v-if="loading">
+        Loading...
+      </p>
+      <Error
+        v-else-if="error"
+        :error="error"
+      ></Error>
+      <SingleItemStyles v-else-if="data">
+        <img
+          :src="data.item.largeImage"
+          :alt="data.item.title"
+        />
         <div class="details">
-          <h2>Viewing {{data.item.title}}</h2>
-          <p>{{data.item.description}}</p>
+          <h2>Viewing {{ data.item.title }}</h2>
+          <p>{{ data.item.description }}</p>
         </div>
-      </single-item-styles>
+      </SingleItemStyles>
     </template>
-  </apollo-query>
+  </ApolloQuery>
 </template>
 
 <script>
@@ -54,22 +65,21 @@ const SingleItemStyles = styled.div`
 export default {
   components: {
     SingleItemStyles,
-    Error
+    Error,
   },
   props: {
     id: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     SINGLE_ITEM_QUERY() {
       return SINGLE_ITEM_QUERY
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style>
-
 </style>

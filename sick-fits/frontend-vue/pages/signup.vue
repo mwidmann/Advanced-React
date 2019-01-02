@@ -1,7 +1,7 @@
 <template>
   <Columns>
-    <signup></signup>
-    <signin></signin>
+    <Signup></Signup>
+    <Signin></Signin>
   </Columns>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   components: {
     Signup,
     Signin,
-    Columns
-  }
+    Columns,
+  },
 }
 </script>

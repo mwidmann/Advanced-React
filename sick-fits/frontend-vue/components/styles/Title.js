@@ -16,6 +16,6 @@ const Title = styled.h3`
     color: white;
     padding: 0 1rem;
   }
-`;
+`
 
-export default Title;
+export default Title

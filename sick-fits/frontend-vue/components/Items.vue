@@ -1,17 +1,35 @@
 <template>
   <Center>
-    <pagination :page="page"></pagination>
-    <apollo-query :query="ALL_ITEMS_QUERY" :variables="{ skip: startAt }" fetchPolicy="cache-and-network">
+    <Pagination :page="page"></Pagination>
+    <ApolloQuery
+      :query="ALL_ITEMS_QUERY"
+      :variables="{ skip: startAt }"
+      fetch-policy="cache-and-network"
+    >
       <template slot-scope="{result: {loading, error, data}}">
-        <p v-if="loading">Loading...</p>
-        <error v-else-if="error" :error="error"></error>
-        <items-list v-else-if="data">
-          <item :item="item"  v-for="item in data.items" :key="item.id" />
-        </items-list>
-        <div v-else class="no-result apollo">No result :(</div>
+        <p v-if="loading">
+          Loading...
+        </p>
+        <Error
+          v-else-if="error"
+          :error="error"
+        ></Error>
+        <ItemsList v-else-if="data">
+          <Item
+            v-for="item in data.items"
+            :key="item.id"
+            :item="item"
+          />
+        </ItemsList>
+        <div
+          v-else
+          class="no-result apollo"
+        >
+          No result :(
+        </div>
       </template>
-    </apollo-query>
-    <pagination :page="page"></pagination>
+    </ApolloQuery>
+    <Pagination :page="page"></Pagination>
   </Center>
 </template>
 
@@ -57,12 +75,12 @@ export default {
     Item,
     ApolloQuery,
     Error,
-    Pagination
+    Pagination,
   },
   props: {
     page: {
       type: Number,
-      required: true
+      required: true,
     },
   },
   computed: {
@@ -71,7 +89,7 @@ export default {
     },
     startAt() {
       return this.page * perPage - perPage
-    }
-  }
+    },
+  },
 }
 </script>

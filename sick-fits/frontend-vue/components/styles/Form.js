@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'vue-styled-components'
+import styled, { keyframes } from 'vue-styled-components'
 import theme from '~/assets/theme'
 
 const loading = keyframes`
@@ -74,4 +74,4 @@ const Form = styled.form`
 
 Form.displayName = 'Form'
 
-export default Form;
+export default Form

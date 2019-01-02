@@ -1,12 +1,18 @@
 
 <template>
-  <apollo-mutation
+  <ApolloMutation
     :mutation="SIGNOUT_MUTATION"
-    :refetchQueries="refetchQueries"
+    :refetch-queries="refetchQueries"
     tag=""
   >
-    <button type="button" @click="mutate" slot-scope="{ mutate }">Sign out</button>
-  </apollo-mutation>
+    <button
+      slot-scope="{ mutate }"
+      type="button"
+      @click="mutate"
+    >
+      Sign out
+    </button>
+  </ApolloMutation>
 </template>
 
 <script>
@@ -26,15 +32,15 @@ export default {
   components: {
     ApolloMutation,
   },
+  computed: {
+    SIGNOUT_MUTATION() {
+      return SIGNOUT_MUTATION
+    },
+  },
   methods: {
     refetchQueries() {
       return [{ query: CURRENT_USER_QUERY }]
     },
   },
-  computed: {
-    SIGNOUT_MUTATION() {
-      return SIGNOUT_MUTATION
-    }
-  }
 }
 </script>

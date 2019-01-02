@@ -1,39 +1,77 @@
 <template>
-<div>
-  <apollo-mutation
-    :mutation="CREATE_ITEM_MUTATION"
-    :variables="{ title, price, description, image, largeImage }"
-    @done="onDone">
-    <template slot-scope="{ mutate, loading, error }">
-      <Form @submit.native.prevent="mutate">
-        <Error :error="error"></Error>
-        <fieldset :disabled="loading" :aria-busy="loading">
-          <label for="file">
-            Image
-            <input type="file" id="file" name="file" placeholder="Upload an image" @change="uploadFile" />
-          </label>
-          <img width="200" v-if="image" alt="Upload Preview" :src="image"/>
+  <div>
+    <ApolloMutation
+      :mutation="CREATE_ITEM_MUTATION"
+      :variables="{ title, price, description, image, largeImage }"
+      @done="onDone"
+    >
+      <template slot-scope="{ mutate, loading, error }">
+        <Form @submit.native.prevent="mutate">
+          <Error :error="error"></Error>
+          <fieldset
+            :disabled="loading"
+            :aria-busy="loading"
+          >
+            <label for="file">
+              Image
+              <input
+                id="file"
+                type="file"
+                name="file"
+                placeholder="Upload an image"
+                @change="uploadFile"
+              >
+            </label>
+            <img
+              v-if="image"
+              width="200"
+              alt="Upload Preview"
+              :src="image"
+            >
 
-          <label for="title">
-            Title
-            <input type="text" id="title" name="title" placeholder="Title" required v-model="title" />
-          </label>
+            <label for="title">
+              Title
+              <input
+                id="title"
+                v-model="title"
+                type="text"
+                name="title"
+                placeholder="Title"
+                required
+              >
+            </label>
 
-          <label for="price">
-            Price
-            <input type="number" id="price" name="price" placeholder="Price" required v-model="price" />
-          </label>
+            <label for="price">
+              Price
+              <input
+                id="price"
+                v-model="price"
+                type="number"
+                name="price"
+                placeholder="Price"
+                required
+              >
+            </label>
 
-          <label for="description">
-            Description
-            <textarea type="number" id="description" name="description" placeholder="Enter a description" required v-model="description" />
-          </label>
+            <label for="description">
+              Description
+              <textarea
+                id="description"
+                v-model="description"
+                type="number"
+                name="description"
+                placeholder="Enter a description"
+                required
+              />
+            </label>
 
-          <button type="submit">Submit</button>
-        </fieldset>
-      </Form>
-    </template>
-  </apollo-mutation>
+            <button type="submit">
+              Submit
+            </button>
+          </fieldset>
+        </Form>
+      </template>
+    </ApolloMutation>
   </div>
 </template>
 
@@ -68,7 +106,7 @@ export default {
   components: {
     Form,
     Error,
-    ApolloMutation
+    ApolloMutation,
   },
   data() {
     return {
@@ -76,8 +114,13 @@ export default {
       description: '',
       image: '',
       largeImage: '',
-      price: 0
+      price: 0,
     }
+  },
+  computed: {
+    CREATE_ITEM_MUTATION() {
+      return CREATE_ITEM_MUTATION
+    },
   },
   methods: {
     onDone(result) {
@@ -93,18 +136,13 @@ export default {
         'https://api.cloudinary.com/v1_1/dm9gla83n/image/upload',
         {
           method: 'POST',
-          body: data
+          body: data,
         }
       )
       const file = await res.json()
       this.image = file.secure_url
       this.largeImage = file.eager[0].secure_url
-    }
+    },
   },
-  computed: {
-    CREATE_ITEM_MUTATION() {
-      return CREATE_ITEM_MUTATION
-    }
-  }
 }
 </script>

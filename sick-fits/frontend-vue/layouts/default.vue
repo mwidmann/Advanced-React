@@ -1,9 +1,9 @@
 <template>
   <StyledPage>
-    <Header/>
-    <inner>
-      <nuxt/>
-    </inner>
+    <Header />
+    <Inner>
+      <nuxt />
+    </Inner>
   </StyledPage>
 </template>
 
@@ -59,7 +59,7 @@ export default {
   components: {
     Header,
     StyledPage,
-    Inner
-  }
+    Inner,
+  },
 }
 </script>

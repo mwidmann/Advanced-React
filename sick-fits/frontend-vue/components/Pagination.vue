@@ -1,20 +1,29 @@
 <template>
-  <apollo-query :query="PAGINATION_QUERY" @result="setData">
+  <ApolloQuery
+    :query="PAGINATION_QUERY"
+    @result="setData"
+  >
     <template slot-scope="{result: {loading, error, data}}">
       <PaginationStyles v-if="data">
         <nuxt-link
           :to="`/items/${Math.max(page - 1, 1)}`"
           class="prev"
-          :aria-disabled="page <= 1">⬅ Prev</nuxt-link>
-        <p>Page {{page}} of {{pages}}</p>
-        <p>{{count}} Items total</p>
+          :aria-disabled="page <= 1"
+        >
+          ⬅ Prev
+        </nuxt-link>
+        <p>Page {{ page }} of {{ pages }}</p>
+        <p>{{ count }} Items total</p>
         <nuxt-link
           :to="`/items/${Math.min(page + 1, pages)}`"
           class="prev"
-          :aria-disabled="page >= pages">Next ➡</nuxt-link>
+          :aria-disabled="page >= pages"
+        >
+          Next ➡
+        </nuxt-link>
       </PaginationStyles>
     </template>
-  </apollo-query>
+  </ApolloQuery>
 </template>
 
 <script>
@@ -34,28 +43,28 @@ const PAGINATION_QUERY = gql`
 
 export default {
   components: {
-    PaginationStyles
+    PaginationStyles,
   },
   props: {
     page: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       count: undefined,
-      pages: undefined
+      pages: undefined,
     }
   },
   computed: {
     PAGINATION_QUERY() {
       return PAGINATION_QUERY
-    }
+    },
   },
   head() {
     return {
-      title: `Sick Fits! - Page ${this.page} of ${this.pages}`
+      title: `Sick Fits! - Page ${this.page} of ${this.pages}`,
     }
   },
   methods: {
@@ -64,7 +73,7 @@ export default {
         this.count = data.data.itemsConnection.aggregate.count
         this.pages = Math.ceil(this.count / perPage)
       }
-    }
-  }
+    },
+  },
 }
 </script>

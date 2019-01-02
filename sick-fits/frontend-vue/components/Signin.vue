@@ -1,32 +1,45 @@
 <template>
-  <apollo-mutation
+  <ApolloMutation
     :mutation="SIGNIN_MUTATION"
-    :refetchQueries="refetchQueries"
+    :refetch-queries="refetchQueries"
     :variables="{ email, password }"
   >
     <template slot-scope="{ mutate, loading, error }">
-      <Form method="post" @submit.native.prevent="mutate">
-        <fieldset :disabled="loading" :aria-busy="loading">
+      <Form
+        method="post"
+        @submit.native.prevent="mutate"
+      >
+        <fieldset
+          :disabled="loading"
+          :aria-busy="loading"
+        >
           <h2>Sign into your account</h2>
-          <Error :error="error"/>
+          <Error :error="error" />
           <label for="email">
             Email
-            <input type="email" placeholder="email" name="email" v-model="email">
+            <input
+              v-model="email"
+              type="email"
+              placeholder="email"
+              name="email"
+            >
           </label>
           <label for="password">
             Password
             <input
+              v-model="password"
               type="password"
               placeholder="password"
               name="password"
-              v-model="password"
             >
           </label>
-          <button type="submit">Sign In!</button>
+          <button type="submit">
+            Sign In!
+          </button>
         </fieldset>
       </Form>
     </template>
-  </apollo-mutation>
+  </ApolloMutation>
 </template>
 
 <script>
@@ -37,10 +50,7 @@ import Error from './ErrorMessage'
 import { CURRENT_USER_QUERY } from './User'
 
 const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION(
-    $email: String!
-    $password: String!
-  ) {
+  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
     signin(email: $email, password: $password) {
       id
       email
@@ -53,23 +63,23 @@ export default {
   components: {
     ApolloMutation,
     Form,
-    Error
+    Error,
   },
   data() {
     return {
       email: '',
-      password: ''
-    }
-  },
-  methods: {
-    refetchQueries() {
-      return [{query: CURRENT_USER_QUERY}]
+      password: '',
     }
   },
   computed: {
     SIGNIN_MUTATION() {
       return SIGNIN_MUTATION
-    }
-  }
+    },
+  },
+  methods: {
+    refetchQueries() {
+      return [{ query: CURRENT_USER_QUERY }]
+    },
+  },
 }
 </script>

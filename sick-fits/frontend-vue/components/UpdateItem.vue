@@ -1,17 +1,30 @@
 <template>
   <div>
-    <apollo-query :query="SINGLE_ITEM_QUERY" :variables="{id}">
+    <ApolloQuery
+      :query="SINGLE_ITEM_QUERY"
+      :variables="{id}"
+    >
       <template slot-scope="{result: {loading, error, data}}">
-        <p v-if="loading">Loading...</p>
-        <p v-else-if="error">Error: {error.message}</p>
-        <Form v-else-if="data" @submit.native.prevent="mutateData">
+        <p v-if="loading">
+          Loading...
+        </p>
+        <p v-else-if="error">
+          Error: {error.message}
+        </p>
+        <Form
+          v-else-if="data"
+          @submit.native.prevent="mutateData"
+        >
           <Error :error="error"></Error>
-          <fieldset :disabled="loading" :aria-busy="loading">
+          <fieldset
+            :disabled="loading"
+            :aria-busy="loading"
+          >
             <label for="title">
               Title
               <input
-                type="text"
                 id="title"
+                type="text"
                 name="title"
                 placeholder="Title"
                 required
@@ -23,8 +36,8 @@
             <label for="price">
               Price
               <input
-                type="number"
                 id="price"
+                type="number"
                 name="price"
                 placeholder="Price"
                 required
@@ -36,8 +49,8 @@
             <label for="description">
               Description
               <textarea
-                type="number"
                 id="description"
+                type="number"
                 name="description"
                 placeholder="Enter a description"
                 required
@@ -46,11 +59,13 @@
               />
             </label>
 
-            <button type="submit">Submit</button>
+            <button type="submit">
+              Submit
+            </button>
           </fieldset>
         </Form>
       </template>
-    </apollo-query>
+    </ApolloQuery>
   </div>
 </template>
 
@@ -100,13 +115,21 @@ export default {
   props: {
     id: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      updateData: {}
+      updateData: {},
     }
+  },
+  computed: {
+    UPDATE_ITEM_MUTATION() {
+      return UPDATE_ITEM_MUTATION
+    },
+    SINGLE_ITEM_QUERY() {
+      return SINGLE_ITEM_QUERY
+    },
   },
   methods: {
     handleChange(e) {
@@ -119,19 +142,11 @@ export default {
         mutation: this.UPDATE_ITEM_MUTATION,
         variables: {
           id: this.id,
-          ...this.updateData
-        }
+          ...this.updateData,
+        },
       })
       this.$router.push(`/item/${res.data.updateItem.id}`)
-    }
+    },
   },
-  computed: {
-    UPDATE_ITEM_MUTATION() {
-      return UPDATE_ITEM_MUTATION
-    },
-    SINGLE_ITEM_QUERY() {
-      return SINGLE_ITEM_QUERY
-    },
-  }
 }
 </script>

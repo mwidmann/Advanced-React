@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Items :page="parseFloat(1)"/>
+    <Items :page="parseFloat(1)" />
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import Items from '~/components/Items'
 
 export default {
   components: {
-    Items
-  }
+    Items,
+  },
 }
 </script>
