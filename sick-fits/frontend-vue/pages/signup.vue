@@ -1,14 +1,14 @@
 <template>
   <Columns>
     <signup></signup>
-    <signup></signup>
-    <signup></signup>
+    <signin></signin>
   </Columns>
 </template>
 
 <script>
 import styled from 'vue-styled-components'
 import Signup from '../components/Signup'
+import Signin from '../components/Signin'
 
 const Columns = styled.div`
   display: grid;
@@ -19,6 +19,7 @@ const Columns = styled.div`
 export default {
   components: {
     Signup,
+    Signin,
     Columns
   }
 }

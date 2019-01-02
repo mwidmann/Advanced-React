@@ -1,16 +1,17 @@
 <template>
-  <nav-styles>
     <user>
       <template slot-scope="{ payload: { data } }">
-        <p v-if="data">{{data.me.name}}</p>
+        <nav-styles>
+          <nuxt-link to="/items">Shop</nuxt-link>
+          <template v-if="data && data.me">
+            <nuxt-link to="/sell">sell</nuxt-link>
+            <nuxt-link to="/me">me</nuxt-link>
+            <nuxt-link to="/orders">orders</nuxt-link>
+          </template>
+          <nuxt-link to="/signup" v-if="!data || !data.me">Sign in</nuxt-link>
+        </nav-styles>
       </template>
     </user>
-    <nuxt-link to="/items">Shop</nuxt-link>
-    <nuxt-link to="/sell">sell</nuxt-link>
-    <nuxt-link to="/signup">signup</nuxt-link>
-    <nuxt-link to="/orders">orders</nuxt-link>
-    <nuxt-link to="/me">me</nuxt-link>
-  </nav-styles>
 </template>
 
 <script>
