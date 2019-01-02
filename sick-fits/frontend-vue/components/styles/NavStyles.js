@@ -61,6 +61,6 @@ const NavStyles = styled.ul`
     justify-content: center;
     font-size: 1.5rem;
   }
-`;
+`
 
-export default NavStyles;
+export default NavStyles

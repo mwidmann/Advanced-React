@@ -2,7 +2,9 @@
   <StyledHeader>
     <div class="bar">
       <Logo>
-        <nuxt-link to="/">Sick Fits</nuxt-link>
+        <nuxt-link to="/">
+          Sick Fits
+        </nuxt-link>
       </Logo>
       <Nav></Nav>
     </div>
@@ -61,7 +63,7 @@ export default {
   components: {
     Nav,
     StyledHeader,
-    Logo
-  }
+    Logo,
+  },
 }
 </script>

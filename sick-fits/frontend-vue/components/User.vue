@@ -1,9 +1,9 @@
 <template>
-  <apollo-query :query="CURRENT_USER_QUERY">
+  <ApolloQuery :query="CURRENT_USER_QUERY">
     <template slot-scope="payload">
       <slot :payload="payload.result"></slot>
     </template>
-  </apollo-query>
+  </ApolloQuery>
 </template>
 
 <script>
@@ -23,8 +23,8 @@ export default {
   computed: {
     CURRENT_USER_QUERY() {
       return CURRENT_USER_QUERY
-    }
-  }
+    },
+  },
 }
 
 export { CURRENT_USER_QUERY }

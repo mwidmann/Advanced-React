@@ -1,6 +1,6 @@
 <template>
   <div>
-    <create-item></create-item>
+    <CreateItem></CreateItem>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import CreateItem from '../components/CreateItem'
 export default {
   components: {
-    CreateItem
-  }
+    CreateItem,
+  },
 }
 </script>

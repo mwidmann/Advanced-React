@@ -1,6 +1,6 @@
 <template>
   <div>
-    <update-item :id="$route.params.id"></update-item>
+    <UpdateItem :id="$route.params.id"></UpdateItem>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import UpdateItem from '../../components/UpdateItem'
 export default {
   components: {
-    UpdateItem
-  }
+    UpdateItem,
+  },
 }
 </script>

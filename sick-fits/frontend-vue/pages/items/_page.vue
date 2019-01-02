@@ -1,17 +1,17 @@
 <template>
-  <items :page="page"></items>
+  <Items :page="page"></Items>
 </template>
 
 <script>
 import Items from '~/components/Items'
 export default {
   components: {
-    Items
+    Items,
   },
   computed: {
     page() {
-      return parseFloat(this.$route.params.page) || 1;
-    }
-  }
+      return parseFloat(this.$route.params.page) || 1
+    },
+  },
 }
 </script>

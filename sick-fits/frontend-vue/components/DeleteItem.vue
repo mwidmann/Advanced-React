@@ -1,5 +1,7 @@
 <template>
-  <button @click="deleteItem"><slot></slot></button>
+  <button @click="deleteItem">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
@@ -18,8 +20,8 @@ export default {
   props: {
     id: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     deleteItem() {
@@ -33,13 +35,15 @@ export default {
             // manually update the cache on the client
             const data = cache.readQuery({ query: ALL_ITEMS_QUERY })
             // filter the deleted items out of the page
-            data.items = data.items.filter(item => item.id !== payload.data.deleteItem.id)
+            data.items = data.items.filter(
+              item => item.id !== payload.data.deleteItem.id
+            )
             // put the items back
             cache.writeQuery({ query: ALL_ITEMS_QUERY, data })
-          }
+          },
         })
       }
-    }
-  }
+    },
+  },
 }
 </script>

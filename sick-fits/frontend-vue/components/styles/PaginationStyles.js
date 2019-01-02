@@ -1,4 +1,4 @@
-import styled from 'vue-styled-components';
+import styled from 'vue-styled-components'
 import theme from '~/assets/theme'
 
 const PaginationStyles = styled.div`
@@ -23,6 +23,6 @@ const PaginationStyles = styled.div`
     color: grey;
     pointer-events: none;
   }
-`;
+`
 
-export default PaginationStyles;
+export default PaginationStyles
