@@ -7,6 +7,7 @@
             <nuxt-link to="/sell">sell</nuxt-link>
             <nuxt-link to="/me">me</nuxt-link>
             <nuxt-link to="/orders">orders</nuxt-link>
+            <signout></signout>
           </template>
           <nuxt-link to="/signup" v-if="!data || !data.me">Sign in</nuxt-link>
         </nav-styles>
@@ -17,11 +18,13 @@
 <script>
 import NavStyles from './styles/NavStyles'
 import User from './User'
+import Signout from './Signout'
 
 export default {
   components: {
     NavStyles,
-    User
+    User,
+    Signout,
   },
   methods: {
     log(data) {console.log(data)}
