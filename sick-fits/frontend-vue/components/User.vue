@@ -1,5 +1,8 @@
 <template>
-  <ApolloQuery :query="CURRENT_USER_QUERY">
+  <ApolloQuery
+    :query="CURRENT_USER_QUERY"
+    tag=""
+  >
     <template slot-scope="payload">
       <slot :payload="payload.result"></slot>
     </template>
