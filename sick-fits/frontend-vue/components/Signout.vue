@@ -28,9 +28,6 @@ const SIGNOUT_MUTATION = gql`
 `
 
 export default {
-  components: {
-    ApolloMutation,
-  },
   computed: {
     SIGNOUT_MUTATION() {
       return SIGNOUT_MUTATION
