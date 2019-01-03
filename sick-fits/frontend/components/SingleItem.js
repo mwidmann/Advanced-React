@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
+import PropType from 'prop-types';
 import Head from 'next/head';
 import Error from './ErrorMessage';
 
@@ -37,6 +38,10 @@ const SINGLE_ITEM_QUERY = gql`
 `;
 
 class SingleItem extends Component {
+  static propTypes = {
+    id: PropType.string.isRequired,
+  };
+
   render() {
     const { id } = this.props;
     return (
@@ -44,7 +49,7 @@ class SingleItem extends Component {
         {({ error, loading, data }) => {
           if (error) return <Error error={error} />;
           if (loading) return <p>Loading...</p>;
-          const item = { data };
+          const { item } = data;
           return (
             <SingleItemStyles>
               <Head>
