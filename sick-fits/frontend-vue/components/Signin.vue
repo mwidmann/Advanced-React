@@ -43,10 +43,7 @@
 </template>
 
 <script>
-import { ApolloMutation } from 'vue-apollo'
 import gql from 'graphql-tag'
-import Form from './styles/Form'
-import Error from './ErrorMessage'
 import { CURRENT_USER_QUERY } from './User'
 
 const SIGNIN_MUTATION = gql`
@@ -60,11 +57,6 @@ const SIGNIN_MUTATION = gql`
 `
 
 export default {
-  components: {
-    ApolloMutation,
-    Form,
-    Error,
-  },
   data() {
     return {
       email: '',

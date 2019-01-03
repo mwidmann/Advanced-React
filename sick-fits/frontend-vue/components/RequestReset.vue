@@ -37,10 +37,7 @@
 </template>
 
 <script>
-import { ApolloMutation } from 'vue-apollo'
 import gql from 'graphql-tag'
-import Form from './styles/Form'
-import Error from './ErrorMessage'
 
 const REQUEST_RESET_MUTATION = gql`
   mutation REQUEST_RESET_MUTATION($email: String!) {
@@ -51,10 +48,6 @@ const REQUEST_RESET_MUTATION = gql`
 `
 
 export default {
-  components: {
-    Form,
-    Error,
-  },
   data() {
     return {
       email: '',

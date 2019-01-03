@@ -71,9 +71,7 @@
 
 <script>
 import gql from 'graphql-tag'
-import Form from './styles/Form'
 import formatMoney from '../lib/formatMoney'
-import Error from './ErrorMessage'
 
 export const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY($id: ID!) {
@@ -108,10 +106,6 @@ export const UPDATE_ITEM_MUTATION = gql`
 `
 
 export default {
-  components: {
-    Form,
-    Error,
-  },
   props: {
     id: {
       type: String,

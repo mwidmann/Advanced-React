@@ -44,10 +44,7 @@
 </template>
 
 <script>
-import { ApolloMutation } from 'vue-apollo'
 import gql from 'graphql-tag'
-import Form from './styles/Form'
-import Error from './ErrorMessage'
 import { CURRENT_USER_QUERY } from './User'
 
 const RESET_MUTATION = gql`
@@ -69,10 +66,6 @@ const RESET_MUTATION = gql`
 `
 
 export default {
-  components: {
-    Form,
-    Error,
-  },
   props: {
     resetToken: {
       type: String,

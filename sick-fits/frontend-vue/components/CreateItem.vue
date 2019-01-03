@@ -76,11 +76,8 @@
 </template>
 
 <script>
-import { ApolloMutation } from 'vue-apollo'
 import gql from 'graphql-tag'
-import Form from './styles/Form'
 import formatMoney from '../lib/formatMoney'
-import Error from './ErrorMessage'
 
 export const CREATE_ITEM_MUTATION = gql`
   mutation CREATE_ITEM_MUTATION(
@@ -103,11 +100,6 @@ export const CREATE_ITEM_MUTATION = gql`
 `
 
 export default {
-  components: {
-    Form,
-    Error,
-    ApolloMutation,
-  },
   data() {
     return {
       title: '',

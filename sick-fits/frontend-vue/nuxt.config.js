@@ -1,6 +1,6 @@
 const pkg = require('./package')
 import serveStatic from 'serve-static'
-import { endpoint } from './config';
+import { endpoint } from './config'
 
 module.exports = {
   mode: 'spa',
@@ -13,38 +13,33 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
   },
 
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#4fc08d' },
+  loading: {
+    color: '#4fc08d',
+    height: '5px',
+  },
 
   /*
   ** Global CSS
   */
-  css: [
-    '~/static/nprogress.css'
-  ],
+  css: [],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-
-  ],
+  plugins: ['~/plugins/global-components.js'],
 
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    '@nuxtjs/apollo'
-  ],
+  modules: ['@nuxtjs/apollo'],
 
   /*
   ** Build configuration
@@ -69,18 +64,19 @@ module.exports = {
       default: {
         httpEndpoint: endpoint,
         httpLinkOptions: {
-          credentials: 'include'
+          credentials: 'include',
         },
       },
     },
   },
   serverMiddleware: [
     {
-      path: '/fonts', handler: serveStatic(__dirname + '/fonts', {
+      path: '/fonts',
+      handler: serveStatic(__dirname + '/fonts', {
         setHeaders: (res, path) => {
           res.setHeader('Content-Type', serveStatic.mime.lookup(path))
-        }
-      })
-    }
-  ]
+        },
+      }),
+    },
+  ],
 }

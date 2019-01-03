@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import { ApolloMutation } from 'vue-apollo'
 import gql from 'graphql-tag'
 import { CURRENT_USER_QUERY } from './User'
 
