@@ -94,6 +94,7 @@ class UserPermissions extends Component {
           <td key={permission}>
             <label htmlFor={`${user.id}-permission-${permission}`}>
               <input
+                id={`${user.id}-permission-${permission}`}
                 type="checkbox"
                 checked={permissions.includes(permission)}
                 value={permission}

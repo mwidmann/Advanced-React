@@ -8,6 +8,7 @@
     >
       <label :for="`${user.id}-permission-${permission}`">
         <input
+          :id="`${user.id}-permission-${permission}`"
           v-model="permissions"
           type="checkbox"
           :value="permission"
