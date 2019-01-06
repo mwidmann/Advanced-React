@@ -2,7 +2,7 @@ import styled from 'vue-styled-components'
 import theme from '~/assets/theme'
 
 const PriceTag = styled.span`
-  background: ${theme.red};
+  background: ${theme.vue};
   transform: rotate(3deg);
   color: white;
   font-weight: 600;

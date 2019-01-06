@@ -34,13 +34,13 @@ const Form = styled.form`
     border: 1px solid black;
     &:focus {
       outline: 0;
-      border-color: ${theme.red};
+      border-color: ${theme.vue};
     }
   }
   button,
   input[type='submit'] {
     width: auto;
-    background: ${theme.red};
+    background: ${theme.vue};
     color: white;
     border: 0;
     font-size: 2rem;
