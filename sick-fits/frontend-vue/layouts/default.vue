@@ -61,5 +61,10 @@ export default {
     StyledPage,
     Inner,
   },
+  head() {
+    return {
+      title: `Sick Vits!`,
+    }
+  },
 }
 </script>

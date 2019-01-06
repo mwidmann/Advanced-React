@@ -64,7 +64,7 @@ export default {
   },
   head() {
     return {
-      title: `Sick Fits! - Page ${this.page} of ${this.pages}`,
+      title: `Sick Vits! - Page ${this.page} of ${this.pages}`,
     }
   },
   methods: {
