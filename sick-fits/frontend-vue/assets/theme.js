@@ -1,5 +1,5 @@
 export default {
-  red: '#4fc08d',
+  vue: '#4fc08d',
   black: '#393939',
   grey: '#3A3A3A',
   lightgrey: '#E1E1E1',

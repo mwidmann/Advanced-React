@@ -2,7 +2,7 @@ import styled from 'vue-styled-components'
 import theme from '~/assets/theme'
 
 const SickButton = styled.button`
-  background: ${theme.red};
+  background: ${theme.vue};
   color: white;
   font-weight: 500;
   border: 0;
