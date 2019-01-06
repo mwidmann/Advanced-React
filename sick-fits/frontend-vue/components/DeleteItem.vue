@@ -26,22 +26,24 @@ export default {
   methods: {
     deleteItem() {
       if (confirm('Are you sure?')) {
-        this.$apollo.mutate({
-          mutation: DELETE_ITEM_MUTATION,
-          variables: {
-            id: this.id,
-          },
-          update(cache, payload) {
-            // manually update the cache on the client
-            const data = cache.readQuery({ query: ALL_ITEMS_QUERY })
-            // filter the deleted items out of the page
-            data.items = data.items.filter(
-              item => item.id !== payload.data.deleteItem.id
-            )
-            // put the items back
-            cache.writeQuery({ query: ALL_ITEMS_QUERY, data })
-          },
-        })
+        this.$apollo
+          .mutate({
+            mutation: DELETE_ITEM_MUTATION,
+            variables: {
+              id: this.id,
+            },
+            update(cache, payload) {
+              // manually update the cache on the client
+              const data = cache.readQuery({ query: ALL_ITEMS_QUERY })
+              // filter the deleted items out of the page
+              data.items = data.items.filter(
+                item => item.id !== payload.data.deleteItem.id
+              )
+              // put the items back
+              cache.writeQuery({ query: ALL_ITEMS_QUERY, data })
+            },
+          })
+          .catch(err => alert(err.message))
       }
     },
   },
