@@ -3,7 +3,7 @@
     <div class="bar">
       <Logo>
         <nuxt-link to="/">
-          Sick Fits
+          Sick Vits
         </nuxt-link>
       </Logo>
       <Nav></Nav>
