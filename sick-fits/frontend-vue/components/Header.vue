@@ -11,13 +11,14 @@
     <div class="sub-bar">
       <p>Search</p>
     </div>
-    <div>Cart</div>
+    <Cart></Cart>
   </StyledHeader>
 </template>
 
 <script>
 import styled from 'vue-styled-components'
 import Nav from '~/components/Nav'
+import Cart from '~/components/Cart'
 import theme from '~/assets/theme'
 
 const Logo = styled.h1`
@@ -64,6 +65,7 @@ export default {
     Nav,
     StyledHeader,
     Logo,
+    Cart,
   },
 }
 </script>
