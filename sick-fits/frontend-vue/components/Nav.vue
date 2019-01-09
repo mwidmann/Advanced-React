@@ -15,6 +15,14 @@
           orders
         </nuxt-link>
         <Signout></Signout>
+        <ApolloMutation :mutation="TOGGLE_CART_MUTATION">
+          <button
+            slot-scope="{mutate}"
+            @click="mutate"
+          >
+            My Cart
+          </button>
+        </ApolloMutation>
       </template>
       <nuxt-link
         v-if="!data || !data.me"
@@ -30,6 +38,7 @@
 import NavStyles from './styles/NavStyles'
 import User from './User'
 import Signout from './Signout'
+import { TOGGLE_CART_MUTATION } from '../graphql/mutations'
 
 export default {
   components: {
@@ -37,9 +46,9 @@ export default {
     User,
     Signout,
   },
-  methods: {
-    log(data) {
-      console.log(data)
+  computed: {
+    TOGGLE_CART_MUTATION() {
+      return TOGGLE_CART_MUTATION
     },
   },
 }

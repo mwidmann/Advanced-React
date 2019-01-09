@@ -1,6 +1,5 @@
 const pkg = require('./package')
 import serveStatic from 'serve-static'
-import { endpoint } from './config'
 
 module.exports = {
   mode: 'spa',
@@ -61,12 +60,7 @@ module.exports = {
   },
   apollo: {
     clientConfigs: {
-      default: {
-        httpEndpoint: endpoint,
-        httpLinkOptions: {
-          credentials: 'include',
-        },
-      },
+      default: '~/plugins/apollo-default-config.js',
     },
   },
   serverMiddleware: [
