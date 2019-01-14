@@ -15,7 +15,10 @@
           orders
         </nuxt-link>
         <Signout></Signout>
-        <ApolloMutation :mutation="TOGGLE_CART_MUTATION">
+        <ApolloMutation
+          :mutation="TOGGLE_CART_MUTATION"
+          tag=""
+        >
           <button
             slot-scope="{mutate}"
             @click="mutate"
