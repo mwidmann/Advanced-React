@@ -1,6 +1,6 @@
 <template>
   <ApolloMutation
-    :mutation="SIGNIN_MUTATION"
+    :mutation="require('~/graphql/mutations/Signin.gql')"
     :refetch-queries="refetchQueries"
     :variables="{ email, password }"
   >
@@ -43,19 +43,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-import { CURRENT_USER_QUERY } from './User'
-
-const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
-    signin(email: $email, password: $password) {
-      id
-      email
-      name
-    }
-  }
-`
-
 export default {
   data() {
     return {
@@ -63,14 +50,9 @@ export default {
       password: '',
     }
   },
-  computed: {
-    SIGNIN_MUTATION() {
-      return SIGNIN_MUTATION
-    },
-  },
   methods: {
     refetchQueries() {
-      return [{ query: CURRENT_USER_QUERY }]
+      return [{ query: require('~/graphql/queries/CurrentUser.gql') }]
     },
   },
 }

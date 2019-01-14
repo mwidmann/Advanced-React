@@ -1,5 +1,4 @@
 import { endpoint } from '../config'
-import { QUERY_LOCAL_STATE } from '../graphql/queries'
 
 export default function(context) {
   return {
@@ -15,7 +14,7 @@ export default function(context) {
         Mutation: {
           toggleCart(_, variables, { cache }) {
             const { cartOpen } = cache.readQuery({
-              query: QUERY_LOCAL_STATE,
+              query: require('~/graphql/queries/LocalState.gql'),
             })
             const data = {
               data: {

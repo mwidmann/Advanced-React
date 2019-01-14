@@ -1,6 +1,6 @@
 <template>
   <ApolloQuery
-    :query="PAGINATION_QUERY"
+    :query="require('~/graphql/queries/Pagination.gql')"
     @result="setData"
   >
     <template slot-scope="{result: {loading, error, data}}">
@@ -27,19 +27,8 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
 import PaginationStyles from './styles/PaginationStyles'
 import { perPage } from '../config'
-
-const PAGINATION_QUERY = gql`
-  query PAGINATION_QUERY {
-    itemsConnection {
-      aggregate {
-        count
-      }
-    }
-  }
-`
 
 export default {
   components: {
@@ -56,11 +45,6 @@ export default {
       count: undefined,
       pages: undefined,
     }
-  },
-  computed: {
-    PAGINATION_QUERY() {
-      return PAGINATION_QUERY
-    },
   },
   head() {
     return {

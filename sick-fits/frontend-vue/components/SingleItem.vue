@@ -1,6 +1,6 @@
 <template>
   <ApolloQuery
-    :query="SINGLE_ITEM_QUERY"
+    :query="require('~/graphql/queries/SingleItem.gql')"
     :variables="{id}"
   >
     <template slot-scope="{result: {loading, error, data}}">
@@ -26,22 +26,8 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
 import styled from 'vue-styled-components'
 import theme from '~/assets/theme'
-import Error from './ErrorMessage'
-
-const SINGLE_ITEM_QUERY = gql`
-  query SINGLE_ITEM_QUERY($id: ID!) {
-    item(where: { id: $id }) {
-      id
-      title
-      description
-      largeImage
-      price
-    }
-  }
-`
 
 const SingleItemStyles = styled.div`
   max-width: 1200px;
@@ -73,13 +59,5 @@ export default {
       required: true,
     },
   },
-  computed: {
-    SINGLE_ITEM_QUERY() {
-      return SINGLE_ITEM_QUERY
-    },
-  },
 }
 </script>
-
-<style>
-</style>

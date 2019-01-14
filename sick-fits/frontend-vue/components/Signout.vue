@@ -1,7 +1,7 @@
 
 <template>
   <ApolloMutation
-    :mutation="SIGNOUT_MUTATION"
+    :mutation="require('~/graphql/mutations/Signout.gql')"
     :refetch-queries="refetchQueries"
     tag=""
   >
@@ -16,26 +16,10 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-import { CURRENT_USER_QUERY } from './User'
-
-const SIGNOUT_MUTATION = gql`
-  mutation SIGNOUT {
-    signout {
-      message
-    }
-  }
-`
-
 export default {
-  computed: {
-    SIGNOUT_MUTATION() {
-      return SIGNOUT_MUTATION
-    },
-  },
   methods: {
     refetchQueries() {
-      return [{ query: CURRENT_USER_QUERY }]
+      return [{ query: require('~/graphql/queries/CurrentUser.gql') }]
     },
   },
 }

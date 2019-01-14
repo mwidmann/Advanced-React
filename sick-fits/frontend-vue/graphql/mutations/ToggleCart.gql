@@ -1,0 +1,3 @@
+mutation TOGGLE_CART_MUTATION {
+  toggleCart @client
+}

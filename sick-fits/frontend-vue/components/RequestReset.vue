@@ -1,6 +1,6 @@
 <template>
   <ApolloMutation
-    :mutation="REQUEST_RESET_MUTATION"
+    :mutation="require('~/graphql/mutations/RequestReset.gql')"
     :variables="{ email }"
     @done="email = ''; called = true"
   >
@@ -37,27 +37,12 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-
-const REQUEST_RESET_MUTATION = gql`
-  mutation REQUEST_RESET_MUTATION($email: String!) {
-    requestReset(email: $email) {
-      message
-    }
-  }
-`
-
 export default {
   data() {
     return {
       email: '',
       called: false,
     }
-  },
-  computed: {
-    REQUEST_RESET_MUTATION() {
-      return REQUEST_RESET_MUTATION
-    },
   },
 }
 </script>
