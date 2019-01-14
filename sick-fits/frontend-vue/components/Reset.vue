@@ -1,6 +1,6 @@
 <template>
   <ApolloMutation
-    :mutation="RESET_MUTATION"
+    :mutation="require('~/graphql/mutations/Reset.gql')"
     :variables="{ resetToken, password, confirmPassword }"
     :refetch-queries="refetchQueries"
     @done="onDone"
@@ -44,27 +44,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-import { CURRENT_USER_QUERY } from './User'
-
-const RESET_MUTATION = gql`
-  mutation RESET_MUTATION(
-    $resetToken: String!
-    $password: String!
-    $confirmPassword: String!
-  ) {
-    resetPassword(
-      resetToken: $resetToken
-      password: $password
-      confirmPassword: $confirmPassword
-    ) {
-      id
-      email
-      name
-    }
-  }
-`
-
 export default {
   props: {
     resetToken: {
@@ -78,14 +57,9 @@ export default {
       confirmPassword: '',
     }
   },
-  computed: {
-    RESET_MUTATION() {
-      return RESET_MUTATION
-    },
-  },
   methods: {
     refetchQueries() {
-      return [{ query: CURRENT_USER_QUERY }]
+      return [{ query: require('~/graphql/queries/CurrentUser.gql') }]
     },
     onDone() {
       this.password = ''

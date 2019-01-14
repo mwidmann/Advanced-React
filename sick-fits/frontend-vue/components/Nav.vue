@@ -16,7 +16,7 @@
         </nuxt-link>
         <Signout></Signout>
         <ApolloMutation
-          :mutation="TOGGLE_CART_MUTATION"
+          :mutation="require('~/graphql/mutations/ToggleCart')"
           tag=""
         >
           <button
@@ -41,18 +41,12 @@
 import NavStyles from './styles/NavStyles'
 import User from './User'
 import Signout from './Signout'
-import { TOGGLE_CART_MUTATION } from '../graphql/mutations'
 
 export default {
   components: {
     NavStyles,
     User,
     Signout,
-  },
-  computed: {
-    TOGGLE_CART_MUTATION() {
-      return TOGGLE_CART_MUTATION
-    },
   },
 }
 </script>

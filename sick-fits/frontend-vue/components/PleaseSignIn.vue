@@ -1,6 +1,6 @@
 <template>
   <ApolloQuery
-    :query="CURRENT_USER_QUERY"
+    :query="require('~/graphql/queries/CurrentUser.gql')"
   >
     <template slot-scope="{result: {loading, error, data}}">
       <p v-if="loading">
@@ -19,15 +19,9 @@
 
 <script>
 import Signin from './Signin'
-import { CURRENT_USER_QUERY } from './User'
 export default {
   components: {
     Signin,
-  },
-  computed: {
-    CURRENT_USER_QUERY() {
-      return CURRENT_USER_QUERY
-    },
   },
 }
 </script>

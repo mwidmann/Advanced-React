@@ -1,0 +1,5 @@
+mutation ADD_TO_CART_MUTATION($id: ID!) {
+  addToCart(id: $id) {
+    quantity
+  }
+}

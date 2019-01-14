@@ -1,5 +1,5 @@
 <template>
-  <ApolloQuery :query="ALL_USERS_QUERY">
+  <ApolloQuery :query="require('~/graphql/queries/AllUsers.gql')">
     <div slot-scope="{ result: { data, error } }">
       <Error :error="error" />
       <div v-if="data">
@@ -32,20 +32,8 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
 import Table from './styles/Table'
 import UserPermission, { possiblePermissions } from './UserPermission'
-
-const ALL_USERS_QUERY = gql`
-  query {
-    users {
-      id
-      email
-      name
-      permissions
-    }
-  }
-`
 
 export default {
   components: {
@@ -53,13 +41,9 @@ export default {
     UserPermission,
   },
   computed: {
-    ALL_USERS_QUERY() {
-      return ALL_USERS_QUERY
-    },
     possiblePermissions() {
       return possiblePermissions
     },
   },
 }
-export { ALL_USERS_QUERY }
 </script>

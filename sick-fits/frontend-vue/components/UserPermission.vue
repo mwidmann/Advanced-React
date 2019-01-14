@@ -1,6 +1,6 @@
 <template>
   <ApolloMutation
-    :mutation="UPDATE_PERMISSIONS_MUTATION"
+    :mutation="require('~/graphql/mutations/UpdatePermission')"
     :variables="{permissions, userId: user.id}"
     tag="fragment"
   >
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
 import SickButton from './styles/SickButton'
 const possiblePermissions = [
   'ADMIN',
@@ -51,20 +50,6 @@ const possiblePermissions = [
   'ITEMDELETE',
   'PERMISSIONUPDATE',
 ]
-
-const UPDATE_PERMISSIONS_MUTATION = gql`
-  mutation UPDATE_PERMISSIONS_MUTATION(
-    $permissions: [Permission]
-    $userId: ID!
-  ) {
-    updatePermissions(permissions: $permissions, userId: $userId) {
-      id
-      email
-      name
-      permissions
-    }
-  }
-`
 
 export default {
   components: {
@@ -84,9 +69,6 @@ export default {
   computed: {
     possiblePermissions() {
       return possiblePermissions
-    },
-    UPDATE_PERMISSIONS_MUTATION() {
-      return UPDATE_PERMISSIONS_MUTATION
     },
   },
   mounted() {

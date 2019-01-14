@@ -1,7 +1,7 @@
 <template>
   <div>
     <ApolloMutation
-      :mutation="CREATE_ITEM_MUTATION"
+      :mutation="require('~/graphql/mutations/CreateItem.gql')"
       :variables="{ title, price, description, image, largeImage }"
       @done="onDone"
     >
@@ -76,28 +76,7 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
 import formatMoney from '../lib/formatMoney'
-
-export const CREATE_ITEM_MUTATION = gql`
-  mutation CREATE_ITEM_MUTATION(
-    $title: String!
-    $description: String!
-    $price: Int!
-    $image: String
-    $largeImage: String
-  ) {
-    createItem(
-      title: $title
-      description: $description
-      price: $price
-      image: $image
-      largeImage: $largeImage
-    ) {
-      id
-    }
-  }
-`
 
 export default {
   data() {
@@ -108,11 +87,6 @@ export default {
       largeImage: '',
       price: 0,
     }
-  },
-  computed: {
-    CREATE_ITEM_MUTATION() {
-      return CREATE_ITEM_MUTATION
-    },
   },
   methods: {
     onDone(result) {

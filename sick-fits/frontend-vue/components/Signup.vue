@@ -1,6 +1,6 @@
 <template>
   <ApolloMutation
-    :mutation="SIGNUP_MUTATION"
+    :mutation="require('~/graphql/mutations/Signup.gql')"
     :refetch-queries="refetchQueries"
     :variables="{ name, email, password }"
   >
@@ -52,23 +52,6 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
-import { CURRENT_USER_QUERY } from './User'
-
-const SIGNUP_MUTATION = gql`
-  mutation SIGNUP_MUTATION(
-    $email: String!
-    $password: String!
-    $name: String!
-  ) {
-    signup(email: $email, password: $password, name: $name) {
-      id
-      email
-      name
-    }
-  }
-`
-
 export default {
   data() {
     return {
@@ -77,14 +60,9 @@ export default {
       password: '',
     }
   },
-  computed: {
-    SIGNUP_MUTATION() {
-      return SIGNUP_MUTATION
-    },
-  },
   methods: {
     refetchQueries() {
-      return [{ query: CURRENT_USER_QUERY }]
+      return [{ query: require('~/graphql/queries/CurrentUser.gql') }]
     },
   },
 }

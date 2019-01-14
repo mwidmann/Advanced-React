@@ -1,7 +1,7 @@
 <template>
   <div>
     <ApolloQuery
-      :query="SINGLE_ITEM_QUERY"
+      :query="require('~/graphql/queries/SingleItem')"
       :variables="{id}"
     >
       <template slot-scope="{result: {loading, error, data}}">
@@ -70,40 +70,7 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
 import formatMoney from '../lib/formatMoney'
-
-export const SINGLE_ITEM_QUERY = gql`
-  query SINGLE_ITEM_QUERY($id: ID!) {
-    item(where: { id: $id }) {
-      id
-      title
-      description
-      price
-    }
-  }
-`
-
-export const UPDATE_ITEM_MUTATION = gql`
-  mutation UPDATE_ITEM_MUTATION(
-    $id: ID!
-    $title: String
-    $description: String
-    $price: Int
-  ) {
-    updateItem(
-      id: $id
-      title: $title
-      description: $description
-      price: $price
-    ) {
-      id
-      title
-      description
-      price
-    }
-  }
-`
 
 export default {
   props: {
@@ -117,14 +84,6 @@ export default {
       updateData: {},
     }
   },
-  computed: {
-    UPDATE_ITEM_MUTATION() {
-      return UPDATE_ITEM_MUTATION
-    },
-    SINGLE_ITEM_QUERY() {
-      return SINGLE_ITEM_QUERY
-    },
-  },
   methods: {
     handleChange(e) {
       const { name, type, value } = e.target
@@ -133,7 +92,7 @@ export default {
     },
     async mutateData() {
       const res = await this.$apollo.mutate({
-        mutation: this.UPDATE_ITEM_MUTATION,
+        mutation: require('~/graphql/mutations/UpdateItem.gql'),
         variables: {
           id: this.id,
           ...this.updateData,

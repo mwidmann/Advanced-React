@@ -2,8 +2,8 @@
   <Center>
     <Pagination :page="page"></Pagination>
     <ApolloQuery
-      :query="ALL_ITEMS_QUERY"
-      :variables="{ skip: startAt }"
+      :query="require('~/graphql/queries/AllItems.gql')"
+      :variables="{ skip: startAt, first: perPage }"
       fetch-policy="cache-and-network"
     >
       <template slot-scope="{result: {loading, error, data}}">
@@ -35,26 +35,11 @@
 
 <script>
 import { ApolloQuery } from 'vue-apollo'
-import gql from 'graphql-tag'
 import styled from 'vue-styled-components'
 import theme from '~/assets/theme'
 import Item from '~/components/Item'
-import Error from '~/components/ErrorMessage'
 import Pagination from '~/components/Pagination'
 import { perPage } from '../config'
-
-export const ALL_ITEMS_QUERY = gql`
-  query ALL_ITEMS_QUERY($skip: Int = 0, $first: Int = ${perPage} ) {
-    items(first: $first, skip: $skip, orderBy: createdAt_DESC) {
-      id
-      title
-      price
-      description
-      image
-      largeImage
-    }
-  }
-`
 
 const Center = styled.div`
   text-align: center;
@@ -83,10 +68,12 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      perPage,
+    }
+  },
   computed: {
-    ALL_ITEMS_QUERY() {
-      return ALL_ITEMS_QUERY
-    },
     startAt() {
       return this.page * perPage - perPage
     },
