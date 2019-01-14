@@ -228,6 +228,42 @@ const mutations = {
       info
     );
   },
+  async addToCart(parent, args, ctx, info) {
+    // 1. check if the user is signed in
+    const { userId } = ctx.request;
+    if (!userId) {
+      throw new Error('You must login to perform this action');
+    }
+    // 2. Query the users current cart
+    const [existingCartItem] = await ctx.db.query.cartItems({
+      where: {
+        item: { id: args.id },
+        user: { id: userId },
+      },
+    });
+    // check if the item is already in the cart and increment by one if so
+    if (existingCartItem) {
+      return ctx.db.mutation.updateCartItem(
+        {
+          data: {
+            quantity: existingCartItem.quantity + 1,
+          },
+          where: { id: existingCartItem.id },
+        },
+        info
+      );
+    }
+    // create a fresh cart item
+    return ctx.db.mutation.createCartItem(
+      {
+        data: {
+          user: { connect: { id: userId } },
+          item: { connect: { id: args.id } },
+        },
+      },
+      info
+    );
+  },
 };
 
 module.exports = mutations;

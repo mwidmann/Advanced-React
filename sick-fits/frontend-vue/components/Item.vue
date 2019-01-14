@@ -14,9 +14,11 @@
       <nuxt-link :to="`/update/${item.id}`">
         Edit ✏
       </nuxt-link>
-      <button>Add To Cart</button>
+      <AddToCart :id="item.id">
+        Add To Cart 🛒
+      </AddToCart>
       <DeleteItem :id="item.id">
-        Delete
+        Delete this item 💣
       </DeleteItem>
     </div>
   </ItemStyles>
@@ -28,6 +30,7 @@ import ItemStyles from './styles/ItemStyles'
 import PriceTag from './styles/PriceTag'
 import formatMoney from '~/lib/formatMoney'
 import DeleteItem from './DeleteItem'
+import AddToCart from './AddToCart'
 
 export default {
   components: {
@@ -35,6 +38,7 @@ export default {
     ItemStyles,
     PriceTag,
     DeleteItem,
+    AddToCart,
   },
   props: {
     item: {
