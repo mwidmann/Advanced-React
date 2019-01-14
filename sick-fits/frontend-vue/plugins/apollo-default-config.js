@@ -9,7 +9,7 @@ export default function(context) {
     },
     clientState: {
       defaults: {
-        cartOpen: true,
+        cartOpen: false,
       },
       resolvers: {
         Mutation: {
