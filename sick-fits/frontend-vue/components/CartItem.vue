@@ -11,6 +11,7 @@
         {{ totalPrice }} - <em>{{ cartItem.quantity }} &times; {{ singlePrice }}</em>
       </p>
     </div>
+    <RemoveFromCart :id="cartItem.id" />
   </CartItemStyles>
 </template>
 
@@ -18,6 +19,7 @@
 import styled from 'vue-styled-components'
 import formatMoney from '../lib/formatMoney'
 import theme from '~/assets/theme'
+import RemoveFromCart from './RemoveFromCart'
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -37,6 +39,7 @@ const CartItemStyles = styled.li`
 export default {
   components: {
     CartItemStyles,
+    RemoveFromCart,
   },
   props: {
     cartItem: {
