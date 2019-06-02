@@ -4,5 +4,16 @@ query {
     email
     name
     permissions
+    cart {
+      id
+      quantity
+      item {
+        id
+        title
+        price
+        image
+        description
+      }
+    }
   }
 }
