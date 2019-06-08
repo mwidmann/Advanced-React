@@ -3,6 +3,14 @@
     :mutation="require('~/graphql/mutations/RemoveFromCart.gql')"
     tag=""
     :variables="{id}"
+    :update="update"
+    :optimistic-response="{
+      __typename: 'Mutation',
+      removeFromCart: {
+        __typename: 'CartItem',
+        id,
+      },
+    }"
   >
     <BigButton
       slot-scope="{ mutate, loading }"
@@ -37,6 +45,20 @@ export default {
     id: {
       type: String,
       required: true,
+    },
+  },
+  methods: {
+    update(cache, payload) {
+      const currentUserQuery = require('~/graphql/queries/CurrentUser.gql')
+      // first read the cache
+      const data = cache.readQuery({
+        query: currentUserQuery,
+      })
+      // remove item from the cart
+      const cartItemId = payload.data.removeFromCart.id
+      data.me.cart = data.me.cart.filter(cartItem => cartItem.id !== cartItemId)
+      // write it back to the cache
+      cache.writeQuery({ query: currentUserQuery, data })
     },
   },
 }
