@@ -1,10 +1,6 @@
 <template>
   <ItemStyles>
-    <img
-      v-if="item.image"
-      :src="item.image"
-      :alt="item.title"
-    />
+    <img v-if="item.image" :src="item.image" :alt="item.title" />
     <Title>
       <nuxt-link :to="`/item/${item.id}`">{{ item.title }}</nuxt-link>
     </Title>
@@ -30,9 +26,9 @@
 import Title from './styles/Title'
 import ItemStyles from './styles/ItemStyles'
 import PriceTag from './styles/PriceTag'
-import formatMoney from '~/lib/formatMoney'
 import DeleteItem from './DeleteItem'
 import AddToCart from './AddToCart'
+import formatMoney from '~/lib/formatMoney'
 
 export default {
   components: {

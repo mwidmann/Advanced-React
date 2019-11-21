@@ -1,8 +1,6 @@
 <template>
-  <ApolloQuery
-    :query="require('~/graphql/queries/CurrentUser.gql')"
-  >
-    <template slot-scope="{result: {loading, error, data}}">
+  <ApolloQuery :query="require('~/graphql/queries/CurrentUser.gql')">
+    <template slot-scope="{ result: { loading, error, data } }">
       <p v-if="loading">
         loading...
       </p>

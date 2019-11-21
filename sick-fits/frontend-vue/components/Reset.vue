@@ -6,14 +6,8 @@
     @done="onDone"
   >
     <template slot-scope="{ mutate, loading, error }">
-      <Form
-        method="post"
-        @submit.native.prevent="mutate"
-      >
-        <fieldset
-          :disabled="loading"
-          :aria-busy="loading"
-        >
+      <Form method="post" @submit.native.prevent="mutate">
+        <fieldset :disabled="loading" :aria-busy="loading">
           <h2>Reset your password</h2>
           <Error :error="error" />
           <label for="password">
@@ -23,7 +17,7 @@
               type="password"
               placeholder="password"
               name="password"
-            >
+            />
           </label>
           <label for="confirmPassword">
             Confirm your Password
@@ -32,7 +26,7 @@
               type="password"
               placeholder="Confirm your Password"
               name="confirmPassword"
-            >
+            />
           </label>
           <button type="submit">
             Reset your Password!

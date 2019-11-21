@@ -9,10 +9,7 @@
             <tr>
               <th>Name</th>
               <th>Email</th>
-              <th
-                v-for="permission in possiblePermissions"
-                :key="permission"
-              >
+              <th v-for="permission in possiblePermissions" :key="permission">
                 {{ permission }}
               </th>
               <th>👇</th>

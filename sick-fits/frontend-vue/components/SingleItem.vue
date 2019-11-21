@@ -1,21 +1,15 @@
 <template>
   <ApolloQuery
     :query="require('~/graphql/queries/SingleItem.gql')"
-    :variables="{id}"
+    :variables="{ id }"
   >
-    <template slot-scope="{result: {loading, error, data}}">
+    <template slot-scope="{ result: { loading, error, data } }">
       <p v-if="loading">
         Loading...
       </p>
-      <Error
-        v-else-if="error"
-        :error="error"
-      ></Error>
+      <Error v-else-if="error" :error="error"></Error>
       <SingleItemStyles v-else-if="data">
-        <img
-          :src="data.item.largeImage"
-          :alt="data.item.title"
-        />
+        <img :src="data.item.largeImage" :alt="data.item.title" />
         <div class="details">
           <h2>Viewing {{ data.item.title }}</h2>
           <p>{{ data.item.description }}</p>

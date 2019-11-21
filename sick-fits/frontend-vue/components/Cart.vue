@@ -5,21 +5,18 @@
         v-if="meData && meData.me"
         :mutation="require('~/graphql/mutations/ToggleCart.gql')"
       >
-        <template slot-scope="{mutate}">
+        <template slot-scope="{ mutate }">
           <ApolloQuery :query="require('~/graphql/queries/LocalState.gql')">
-            <template slot-scope="{result: {data}}">
-              <CartStyles
-                :open="data.cartOpen"
-              >
+            <template slot-scope="{ result: { data } }">
+              <CartStyles :open="data.cartOpen">
                 <header>
-                  <CloseButton
-                    title="Close"
-                    @click="mutate"
-                  >
+                  <CloseButton title="Close" @click="mutate">
                     &times;
                   </CloseButton>
                   <Supreme>{{ meData.me.name }}'s cart</Supreme>
-                  <p>You have {{ meData.me.cart.length }} items in your cart.</p>
+                  <p>
+                    You have {{ meData.me.cart.length }} items in your cart.
+                  </p>
                 </header>
                 <ul>
                   <CartItem
@@ -30,9 +27,7 @@
                 </ul>
                 <footer>
                   <p>{{ getTotalPrice(meData.me.cart) }}</p>
-                  <SickButton
-                    type="button"
-                  >
+                  <SickButton type="button">
                     Checkout
                   </SickButton>
                 </footer>
@@ -46,13 +41,13 @@
 </template>
 
 <script>
+import formatMoney from '../lib/formatMoney'
+import calcTotalPrice from '../lib/calcTotalPrice'
 import CartStyles from './styles/CartStyles'
 import Supreme from './styles/Supreme'
 import CloseButton from './styles/CloseButton'
 import SickButton from './styles/SickButton'
 import User from './User'
-import formatMoney from '../lib/formatMoney'
-import calcTotalPrice from '../lib/calcTotalPrice'
 import CartItem from './CartItem'
 
 export default {

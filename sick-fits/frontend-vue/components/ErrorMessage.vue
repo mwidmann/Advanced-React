@@ -1,9 +1,6 @@
 <template>
   <div v-if="error && error.message">
-    <ErrorStyles
-      v-for="(e, i) in errors"
-      :key="i"
-    >
+    <ErrorStyles v-for="(e, i) in errors" :key="i">
       <p data-test="graphql-error">
         <strong>Shoot!</strong>
         {{ e.message.replace('GraphQL error: ', '') }}

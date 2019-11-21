@@ -3,7 +3,7 @@
     :query="require('~/graphql/queries/Pagination.gql')"
     @result="setData"
   >
-    <template slot-scope="{result: {loading, error, data}}">
+    <template slot-scope="{ result: { loading, error, data } }">
       <PaginationStyles v-if="data">
         <nuxt-link
           :to="`/items/${Math.max(page - 1, 1)}`"
@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import PaginationStyles from './styles/PaginationStyles'
 import { perPage } from '../config'
+import PaginationStyles from './styles/PaginationStyles'
 
 export default {
   components: {
@@ -46,11 +46,6 @@ export default {
       pages: undefined,
     }
   },
-  head() {
-    return {
-      title: `Sick Vits! - Page ${this.page} of ${this.pages}`,
-    }
-  },
   methods: {
     setData(data) {
       if (data.data) {
@@ -58,6 +53,11 @@ export default {
         this.pages = Math.ceil(this.count / perPage)
       }
     },
+  },
+  head() {
+    return {
+      title: `Sick Vits! - Page ${this.page} of ${this.pages}`,
+    }
   },
 }
 </script>

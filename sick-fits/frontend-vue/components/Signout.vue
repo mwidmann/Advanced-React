@@ -1,15 +1,10 @@
-
 <template>
   <ApolloMutation
     :mutation="require('~/graphql/mutations/Signout.gql')"
     :refetch-queries="refetchQueries"
     tag=""
   >
-    <button
-      slot-scope="{ mutate }"
-      type="button"
-      @click="mutate"
-    >
+    <button slot-scope="{ mutate }" type="button" @click="mutate">
       Sign out
     </button>
   </ApolloMutation>

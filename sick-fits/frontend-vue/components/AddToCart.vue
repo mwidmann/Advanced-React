@@ -1,7 +1,7 @@
 <template>
   <ApolloMutation
     :mutation="require('~/graphql/mutations/AddToCart.gql')"
-    :variables="{id}"
+    :variables="{ id }"
     tag=""
     :refetch-queries="refetchQueries"
   >

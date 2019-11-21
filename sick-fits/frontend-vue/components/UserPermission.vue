@@ -1,10 +1,10 @@
 <template>
   <ApolloMutation
     :mutation="require('~/graphql/mutations/UpdatePermission')"
-    :variables="{permissions, userId: user.id}"
+    :variables="{ permissions, userId: user.id }"
     tag="fragment"
   >
-    <template slot-scope="{mutate, error, loading}">
+    <template slot-scope="{ mutate, error, loading }">
       <tr v-if="error">
         <td :colspan="3 + possiblePermissions.length">
           <Error :error="error" />
@@ -13,25 +13,18 @@
       <tr>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td
-          v-for="permission in possiblePermissions"
-          :key="permission"
-        >
+        <td v-for="permission in possiblePermissions" :key="permission">
           <label :for="`${user.id}-permission-${permission}`">
             <input
               :id="`${user.id}-permission-${permission}`"
               v-model="permissions"
               type="checkbox"
               :value="permission"
-            >
+            />
           </label>
         </td>
         <td>
-          <SickButton
-            :disabled="loading"
-            type="button"
-            @click="mutate"
-          >
+          <SickButton :disabled="loading" type="button" @click="mutate">
             Update
           </SickButton>
         </td>

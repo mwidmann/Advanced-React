@@ -1,14 +1,11 @@
 <template>
   <CartItemStyles>
-    <img
-      :src="cartItem.item.image"
-      :alt="cartItem.item.title"
-      width="100"
-    >
+    <img :src="cartItem.item.image" :alt="cartItem.item.title" width="100" />
     <div class="cart-item-details">
       <h3>{{ cartItem.item.title }}</h3>
       <p>
-        {{ totalPrice }} - <em>{{ cartItem.quantity }} &times; {{ singlePrice }}</em>
+        {{ totalPrice }} -
+        <em>{{ cartItem.quantity }} &times; {{ singlePrice }}</em>
       </p>
     </div>
     <RemoveFromCart :id="cartItem.id" />
@@ -18,8 +15,8 @@
 <script>
 import styled from 'vue-styled-components'
 import formatMoney from '../lib/formatMoney'
-import theme from '~/assets/theme'
 import RemoveFromCart from './RemoveFromCart'
+import theme from '~/assets/theme'
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;
@@ -58,5 +55,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

@@ -19,24 +19,20 @@
           :mutation="require('~/graphql/mutations/ToggleCart')"
           tag=""
         >
-          <button
-            slot-scope="{mutate}"
-            @click="mutate"
-          >
+          <button slot-scope="{ mutate }" @click="mutate">
             My Cart
             <CartCount
-              :count="data.me.cart.reduce(
-                (tally, cartItem) => tally + cartItem.quantity,
-                0
-              )"
+              :count="
+                data.me.cart.reduce(
+                  (tally, cartItem) => tally + cartItem.quantity,
+                  0
+                )
+              "
             ></CartCount>
           </button>
         </ApolloMutation>
       </template>
-      <nuxt-link
-        v-if="!data || !data.me"
-        to="/signup"
-      >
+      <nuxt-link v-if="!data || !data.me" to="/signup">
         Sign in
       </nuxt-link>
     </NavStyles>

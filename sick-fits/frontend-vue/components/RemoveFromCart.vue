@@ -2,7 +2,7 @@
   <ApolloMutation
     :mutation="require('~/graphql/mutations/RemoveFromCart.gql')"
     tag=""
-    :variables="{id}"
+    :variables="{ id }"
     :update="update"
     :optimistic-response="{
       __typename: 'Mutation',
@@ -64,5 +64,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

@@ -8,9 +8,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Header from '~/components/Header'
 import styled, { injectGlobal } from 'vue-styled-components'
+import Header from '~/components/Header'
 import theme from '~/assets/theme'
 
 const StyledPage = styled.div`

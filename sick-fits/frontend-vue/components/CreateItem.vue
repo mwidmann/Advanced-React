@@ -8,10 +8,7 @@
       <template slot-scope="{ mutate, loading, error }">
         <Form @submit.native.prevent="mutate">
           <Error :error="error"></Error>
-          <fieldset
-            :disabled="loading"
-            :aria-busy="loading"
-          >
+          <fieldset :disabled="loading" :aria-busy="loading">
             <label for="file">
               Image
               <input
@@ -20,14 +17,9 @@
                 name="file"
                 placeholder="Upload an image"
                 @change="uploadFile"
-              >
+              />
             </label>
-            <img
-              v-if="image"
-              width="200"
-              alt="Upload Preview"
-              :src="image"
-            >
+            <img v-if="image" width="200" alt="Upload Preview" :src="image" />
 
             <label for="title">
               Title
@@ -38,7 +30,7 @@
                 name="title"
                 placeholder="Title"
                 required
-              >
+              />
             </label>
 
             <label for="price">
@@ -50,7 +42,7 @@
                 name="price"
                 placeholder="Price"
                 required
-              >
+              />
             </label>
 
             <label for="description">
@@ -76,8 +68,6 @@
 </template>
 
 <script>
-import formatMoney from '../lib/formatMoney'
-
 export default {
   data() {
     return {

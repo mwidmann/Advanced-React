@@ -2,24 +2,18 @@
   <div>
     <ApolloQuery
       :query="require('~/graphql/queries/SingleItem')"
-      :variables="{id}"
+      :variables="{ id }"
     >
-      <template slot-scope="{result: {loading, error, data}}">
+      <template slot-scope="{ result: { loading, error, data } }">
         <p v-if="loading">
           Loading...
         </p>
         <p v-else-if="error">
           Error: {error.message}
         </p>
-        <Form
-          v-else-if="data"
-          @submit.native.prevent="mutateData"
-        >
+        <Form v-else-if="data" @submit.native.prevent="mutateData">
           <Error :error="error"></Error>
-          <fieldset
-            :disabled="loading"
-            :aria-busy="loading"
-          >
+          <fieldset :disabled="loading" :aria-busy="loading">
             <label for="title">
               Title
               <input
@@ -30,7 +24,7 @@
                 required
                 :value="data.item.title"
                 @input="handleChange"
-              >
+              />
             </label>
 
             <label for="price">
@@ -43,7 +37,7 @@
                 required
                 :value="data.item.price"
                 @input="handleChange"
-              >
+              />
             </label>
 
             <label for="description">
@@ -70,8 +64,6 @@
 </template>
 
 <script>
-import formatMoney from '../lib/formatMoney'
-
 export default {
   props: {
     id: {

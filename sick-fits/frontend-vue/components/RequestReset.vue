@@ -2,17 +2,14 @@
   <ApolloMutation
     :mutation="require('~/graphql/mutations/RequestReset.gql')"
     :variables="{ email }"
-    @done="email = ''; called = true"
+    @done="
+      email = ''
+      called = true
+    "
   >
     <template slot-scope="{ mutate, loading, error }">
-      <Form
-        method="post"
-        @submit.native.prevent="mutate"
-      >
-        <fieldset
-          :disabled="loading"
-          :aria-busy="loading"
-        >
+      <Form method="post" @submit.native.prevent="mutate">
+        <fieldset :disabled="loading" :aria-busy="loading">
           <h2>Request a password reset</h2>
           <Error :error="error" />
           <p v-if="!error && !loading && called">
@@ -25,7 +22,7 @@
               type="email"
               placeholder="email"
               name="email"
-            >
+            />
           </label>
           <button type="submit">
             Request Reset!
