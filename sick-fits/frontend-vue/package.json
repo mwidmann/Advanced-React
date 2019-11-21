@@ -18,25 +18,25 @@
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc2.3",
-    "apollo-boost": "^0.4.0",
-    "apollo-client": "^2.6.0",
-    "cross-env": "^5.2.0",
+    "apollo-boost": "^0.4.4",
+    "apollo-client": "^2.6.4",
+    "cross-env": "^6.0.3",
     "graphql-tag": "^2.10.1",
     "node-fetch": "^2.6.0",
-    "nuxt": "^2.9.2",
-    "vue-apollo": "^3.0.0-beta.26",
+    "nuxt": "^2.10.2",
+    "vue-apollo": "^3.0.0",
     "vue-fragment": "^1.5.1",
-    "vue-styled-components": "^1.4.5"
+    "vue-styled-components": "^1.4.14"
   },
   "devDependencies": {
-    "autoprefixer": "^8.6.4",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.11.1",
-    "eslint-config-prettier": "^3.3.0",
-    "eslint-loader": "^2.1.1",
-    "eslint-plugin-prettier": "^2.6.2",
-    "eslint-plugin-vue": "^5.0.0",
-    "nodemon": "^1.18.9",
-    "prettier": "^1.14.3"
+    "autoprefixer": "^9.7.2",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.0.1",
+    "nodemon": "^2.0.1",
+    "prettier": "^1.19.1"
   }
 }
