@@ -5,7 +5,7 @@
       @before-enter="beforeEnter"
       @before-leave="beforeLeave"
     >
-      <Dot :key="count">
+      <Dot :key="count" class="count">
         {{ count }}
       </Dot>
     </transition>
@@ -25,7 +25,7 @@ const AnimationStyles = Styled.span`
     backface-visibility: hidden;
   }
   .count-enter-active {
-    transform: scale(4) rotateX(0.5turn);
+    transform: rotateX(0.5turn);
   }
   .count-enter-to {
     transform: rotateX(0);
@@ -36,7 +36,7 @@ const AnimationStyles = Styled.span`
     transform: rotateX(0);
   }
   .count-leave-to {
-    transform: scale(4) rotateX(0.5turn);
+    transform: rotateX(0.5turn);
   }
 `
 
