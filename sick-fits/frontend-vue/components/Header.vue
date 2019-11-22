@@ -9,7 +9,7 @@
       <Nav></Nav>
     </div>
     <div class="sub-bar">
-      <p>Search</p>
+      <Search></Search>
     </div>
     <Cart></Cart>
   </StyledHeader>
@@ -20,6 +20,7 @@ import styled from 'vue-styled-components'
 import Nav from '~/components/Nav'
 import Cart from '~/components/Cart'
 import theme from '~/assets/theme'
+import Search from '~/components/Search'
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -66,6 +67,7 @@ export default {
     StyledHeader,
     Logo,
     Cart,
+    Search,
   },
 }
 </script>
