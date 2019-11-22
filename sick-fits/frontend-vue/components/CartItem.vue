@@ -1,5 +1,5 @@
 <template>
-  <CartItemStyles>
+  <CartItemStyles v-if="cartItem.item">
     <img :src="cartItem.item.image" :alt="cartItem.item.title" width="100" />
     <div class="cart-item-details">
       <h3>{{ cartItem.item.title }}</h3>
@@ -9,6 +9,9 @@
       </p>
     </div>
     <RemoveFromCart :id="cartItem.id" />
+  </CartItemStyles>
+  <CartItemStyles v-else>
+    <p>This item has been removed</p>
   </CartItemStyles>
 </template>
 
