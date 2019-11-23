@@ -10,14 +10,21 @@ const DropDown = styled.div`
 
 const DropDownItem = styled.div`
   border-bottom: 1px solid ${theme.lightgrey};
-  background: ${props => (props.highlighted ? '#f7f7f7' : 'white')};
+  /* background: ${props => (props.highlighted ? '#f7f7f7' : 'white')}; */
   padding: 1rem;
   transition: all 0.2s;
-  ${props => (props.highlighted ? 'padding-left: 2rem;' : null)};
+  /* ${props => (props.highlighted ? 'padding-left: 2rem;' : null)}; */
   display: flex;
   align-items: center;
   /* border-left: 10px solid
     ${props => (props.highlighted ? props.theme.lightgrey : 'white')}; */
+  border-left: 10px solid white;
+  background: white;
+  &.highlighted {
+    background: '#f7f7f7';
+    padding-left: 2rem;
+    border-left: 10px solid ${theme.lightgrey};
+  }
   img {
     margin-right: 10px;
   }
