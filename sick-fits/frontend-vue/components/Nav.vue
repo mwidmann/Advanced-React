@@ -24,6 +24,12 @@
             @click="mutate"
           >
             My Cart
+            <CartCount
+              :count="data.me.cart.reduce(
+                (tally, cartItem) => tally + cartItem.quantity,
+                0
+              )"
+            ></CartCount>
           </button>
         </ApolloMutation>
       </template>
@@ -41,12 +47,14 @@
 import NavStyles from './styles/NavStyles'
 import User from './User'
 import Signout from './Signout'
+import CartCount from './CartCount'
 
 export default {
   components: {
     NavStyles,
     User,
     Signout,
+    CartCount,
   },
 }
 </script>
