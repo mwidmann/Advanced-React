@@ -15,7 +15,9 @@
         Edit ✏
       </nuxt-link>
       <AddToCart :id="item.id">
-        Add To Cart 🛒
+        <template v-slot:default>
+          Add ➕ To Cart 🛒
+        </template>
       </AddToCart>
       <DeleteItem :id="item.id">
         Delete this item 💣

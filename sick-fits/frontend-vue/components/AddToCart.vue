@@ -11,7 +11,8 @@
       :disabled="loading"
       @click="mutate"
     >
-      Add{{ loading ? 'ing' : '' }} To Cart! 🚧
+      <slot></slot>
+      <!-- Add{{ loading ? 'ing' : '' }} To Cart! 🚧 -->
     </button>
   </ApolloMutation>
 </template>

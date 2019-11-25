@@ -22,7 +22,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/html-self-closing': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     "vue/component-name-in-template-casing": ['error', "PascalCase", {
-      "ignores": ['nuxt-link', 'nuxt', 'fragment']
+      "ignores": ['nuxt-link', 'nuxt', 'fragment', 'transition']
     }]
   }
 }
