@@ -27,9 +27,11 @@
                 </ul>
                 <footer>
                   <p>{{ getTotalPrice(meData.me.cart) }}</p>
-                  <SickButton type="button">
-                    Checkout
-                  </SickButton>
+                  <TakeMyMoney>
+                    <SickButton type="button">
+                      Checkout
+                    </SickButton>
+                  </TakeMyMoney>
                 </footer>
               </CartStyles>
             </template>
@@ -47,6 +49,7 @@ import CartStyles from './styles/CartStyles'
 import Supreme from './styles/Supreme'
 import CloseButton from './styles/CloseButton'
 import SickButton from './styles/SickButton'
+import TakeMyMoney from './TakeMyMoney'
 import User from './User'
 import CartItem from './CartItem'
 
@@ -58,6 +61,7 @@ export default {
     SickButton,
     User,
     CartItem,
+    TakeMyMoney,
   },
   methods: {
     getTotalPrice(cart) {
